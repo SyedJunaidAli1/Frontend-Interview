@@ -17,18 +17,14 @@ export const fetchBlogs = async (): Promise<Blog[]> => {
   return res.json();
 };
 
-export const createBlog = async (blog: Omit<Blog, "id">): Promise<Blog> => {
+export const createBlog = async (blog: Omit<Blog, "id">) => {
   const res = await fetch(`${BASE_URL}/blogs`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(blog),
   });
 
-  if (!res.ok) {
-    throw new Error("Failed to create blog");
-  }
+  if (!res.ok) throw new Error("Failed to create blog");
 
   return res.json();
 };

@@ -1,13 +1,35 @@
-import CreateBlog from "./pages/CreateBlog";
 import { Routes, Route } from "react-router-dom";
-import BlogList from "./pages/BlogList";
-import BlogDetail from "./pages/BlogDetail";
+import BlogLayout from "@/components/BlogLayout";
+import BlogListPanel from "@/components/BlogListPanel";
+import BlogDetailPanel from "@/components/BlogDetailPanel";
+import CreateBlog from "./pages/CreateBlog";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<BlogList />} />
-      <Route path="/blogs/:id" element={<BlogDetail />} />
+      {/* Main blog layout */}
+      <Route
+        path="/"
+        element={
+          <BlogLayout
+            left={<BlogListPanel />}
+            right={<BlogDetailPanel />}
+          />
+        }
+      />
+
+      {/* Blog detail route (same layout, URL changes) */}
+      <Route
+        path="/blogs/:id"
+        element={
+          <BlogLayout
+            left={<BlogListPanel />}
+            right={<BlogDetailPanel />}
+          />
+        }
+      />
+
+      {/* Create blog page */}
       <Route path="/create" element={<CreateBlog />} />
     </Routes>
   );
