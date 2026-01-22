@@ -15,7 +15,7 @@ export default function BlogList() {
     <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Blogs</h1>
 
-      <div className="space-y-4">
+      <div className="flex flex-col space-y-4">
         {data?.map((blog: Blog) => (
           <Link
             key={blog.id}
@@ -23,6 +23,9 @@ export default function BlogList() {
             className="block border rounded-lg p-4 hover:bg-gray-50"
           >
             <h2 className="text-xl font-semibold">{blog.title}</h2>
+            <p className="text-gray-600">{blog.description}</p>
+            <p className="text-gray-600">{blog.date}</p>
+            <img src={blog.coverImage} className="w-48 h-48" />
             <p className="text-gray-600">{blog.content}</p>
           </Link>
         ))}
